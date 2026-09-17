@@ -1,4 +1,4 @@
-import MercatorGeom
+import SphericalChart
 import RoundSphereMetric
 
 /-!
