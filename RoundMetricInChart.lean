@@ -198,26 +198,10 @@ theorem inner_Xθ_Xφ {x : S2} (hx : x ∈ sphSource) : ⟪Xθ x, Xφ x⟫ = 0 :
   rw [h]
   simp [EuclideanSpace.single_apply]
 
-theorem inner_eq_dθ_dφ {x : S2} (hx : x ∈ sphSource) (v w : TangentSpace (𝓡 2) x) :
-    ⟪v, w⟫ = dθ x v * dθ x w + Real.sin (θ_coord x) ^ 2 * (dφ x v * dφ x w) := by
-  have e1 := inner_Xθ_Xθ hx
-  have e2 := inner_Xφ_Xφ hx
-  have e3 := inner_Xθ_Xφ hx
-  have e4 : (⟪Xφ x, Xθ x⟫ : ℝ) = 0 := by rw [real_inner_comm]; exact e3
-  have h1 : ⟪dθ x v • Xθ x, w⟫ = dθ x v * ⟪Xθ x, w⟫ := real_inner_smul_left (Xθ x) w ((dθ x) v)
-  calc ⟪v, w⟫
-      = ⟪dθ x v • Xθ x + dφ x v • Xφ x, dθ x w • Xθ x + dφ x w • Xφ x⟫ := by
-        rw [frame_dual hx v, frame_dual hx w]
-    _ = dθ x v * dθ x w * ⟪Xθ x, Xθ x⟫ + dθ x v * dφ x w * ⟪Xθ x, Xφ x⟫
-        + (dφ x v * dθ x w * ⟪Xφ x, Xθ x⟫ + dφ x v * dφ x w * ⟪Xφ x, Xφ x⟫) := by
-        exact sorry
-    _ = dθ x v * dθ x w + Real.sin (θ_coord x) ^ 2 * (dφ x v * dφ x w) := by
-        rw [e1, e2, e3, e4]; ring
-
 /-- The round metric in the spherical chart is `dθ² + sin²θ dφ²`: for arbitrary tangent vectors
 `v`, `w` at a point of the chart domain,
 `g (v, w) = dθ(v) dθ(w) + sin²θ · dφ(v) dφ(w)`. -/
-theorem inner_eq_dθ_dφ' {x : S2} (hx : x ∈ sphSource) (v w : TangentSpace (𝓡 2) x) :
+theorem inner_eq_dθ_dφ {x : S2} (hx : x ∈ sphSource) (v w : TangentSpace (𝓡 2) x) :
     ⟪v, w⟫ = dθ x v * dθ x w + Real.sin (θ_coord x) ^ 2 * (dφ x v * dφ x w) := by
   have hsym : (⟪Xφ x, Xθ x⟫ : ℝ) = 0 := by
     rw [real_inner_comm]; exact inner_Xθ_Xφ hx
