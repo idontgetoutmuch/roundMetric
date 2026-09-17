@@ -1,0 +1,10 @@
+name = "roundMetric"
+version = "0.1.0"
+defaultTargets = ["roundmetric"]
+
+[[lean_lib]]
+name = "RoundMetric"
+
+[[lean_exe]]
+name = "roundmetric"
+root = "Main"
